@@ -2,5 +2,5 @@
 
 Second example 
 
-https://www.youtube.com/watch?v=vtiiO5I90Tc&t=547s
+https://www.datasciencelearner.com/python-ajax-json-request-form-flask/
 
