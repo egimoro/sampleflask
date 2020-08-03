@@ -1,10 +1,16 @@
-$(function() {
-			  $('a#process_input').bind('click', function() {
-				$.getJSON('/background_process', {
-				  proglang: $('input[name="proglang"]').val(),
-				}, function(data) {
-				  $("#result").text(data.result);
-				});
-				return false;
-			  });
-			});
+$(document).ready(function() {
+     $('form').on('submit', function(event) {
+       $.ajax({
+          data : {
+             firstName : $('#firstName').val(),
+             lastName: $('#lastName').val(),
+                 },
+             type : 'POST',
+             url : '/process',
+             success: (function(data) {
+          $('#output').text(data.output).show();
+      })
+            });
+
+      });
+});

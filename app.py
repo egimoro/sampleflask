@@ -6,16 +6,17 @@ app = Flask(__name__)
 def interactive():
 	return render_template('index.html')
 
-@app.route('/background_process')
-def background_process():
-	try:
-		lang = request.args.get('proglang', 0, type=str)
-		if lang.lower() == 'python':
-			return jsonify(result='You are wise')
-		else:
-			return jsonify(result='Try again.')
-	except Exception as e:
-		return str(e)
+@app.route('/process',methods= ['POST'])
+def process():
+    firstName = request.form['firstName']
+
+    lastName = request.form['lastName']
+
+    output = firstName + " " + lastName
+
+    if firstName and lastName:
+        return jsonify({'output':'Full Name: ' + output})
+    return jsonify({'error' : 'Missing data!'})
 
 
 if __name__ == "__main__":
