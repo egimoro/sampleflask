@@ -1,24 +1,20 @@
-from flask import jsonify, request, render_template, Flask
+import os
+from flask import Flask,render_template, request,json
 
 app = Flask(__name__)
 
+
 @app.route('/')
-def interactive():
-	return render_template('index.html')
+def signUp():
+    return render_template('index.html')
+
 
 @app.route('/process',methods= ['POST'])
 def process():
-    firstName = request.form['firstName']
-
-    lastName = request.form['lastName']
-
-    output = firstName + " " + lastName
-
-    if firstName and lastName:
-        return jsonify({'output':'Full Name: ' + output})
-    return jsonify({'error' : 'Missing data!'})
+    firstName = request.form.get("firstName")
+    lastName = request.form.get("lastName")
+    return json.dumps({"firstName":firstName,"lastName":lastName})
 
 
-if __name__ == "__main__":
+if __name__=="__main__":
     app.run(debug=True)
-    
